@@ -8,7 +8,6 @@
 
 import 'dart:async';
 import 'dart:html' as html;
-import 'dart:typed_data';
 
 import 'package:test/bootstrap/browser.dart';
 import 'package:test/test.dart';
@@ -31,8 +30,6 @@ const Map<String, bool> originState = <String, bool>{'origin': true};
 const Map<String, bool> flutterState = <String, bool>{'flutter': true};
 
 const MethodCodec codec = JSONMethodCodec();
-
-void emptyCallback(ByteData date) {}
 
 void main() {
   internalBootstrapBrowserTest(() => testMain);
@@ -60,7 +57,7 @@ void testMain() {
       // There should be two entries: origin and flutter.
       expect(strategy.history, hasLength(2));
 
-      // The origin entry is setup but its path should remain unchanged.
+      // The origin entry is set up but its path should remain unchanged.
       final TestHistoryEntry originEntry = strategy.history[0];
       expect(originEntry.state, _wrapOriginState('initial state'));
       expect(originEntry.url, '/initial');
